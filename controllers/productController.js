@@ -30,7 +30,25 @@ async function getProduct(req, res, id) {
   }
 }
 
+// @desc Create New Product
+// @route Post /api/products
+async function createProduct(req, res) {
+  try {
+    const product = {
+      name: 'name 1',
+      description: 'description 5',
+      price: 52.99
+    }
+    const newProduct = await Product.add(product)
+    res.writeHead(201, {'Content-Type': 'application/json'})
+    return res.end(JSON.stringify(newProduct))
+  } catch(error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getProducts,
-  getProduct                                  
+  getProduct,
+  createProduct                                  
 }
